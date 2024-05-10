@@ -28,86 +28,145 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-dt=pd.read_csv("/content/titanic_dataset.csv")
-dt
+df=pd.read_csv("/content/titanic_dataset.csv")
+df
 ```
-![324753751-f9c52b29-674b-475e-a317-7f717494c4d2](https://github.com/Swetha733N/EXNO2DS/assets/122199934/f5c912c7-b9b8-42d3-a540-78a062359467)
+![328032655-fb53c826-c322-4048-aa0e-5be94f93b46b](https://github.com/Swetha733N/EXNO2DS/assets/122199934/8187a330-c2db-40e4-ba38-138867b380a5)
+
 
 ```
-dt.info()
+df.info()
 ```
-![324754033-806a43c9-dbf7-4337-a76d-eb26133ce1d8](https://github.com/Swetha733N/EXNO2DS/assets/122199934/41c7965d-64a3-46be-840e-59cca8e1eb90)
+![328032669-556fcaa2-66be-43cd-be60-4c39ab0bebb8](https://github.com/Swetha733N/EXNO2DS/assets/122199934/00f5f0c8-119b-458c-b4bf-bb2a024551f2)
+
 
 ```
-dt.shape
-dt.head(4)
-dt.tail(4)
-dt.set_index("PassengerId",inplace=True)
+df.set_index("PassengerId",inplace =True)
+df.shape
 ```
-![324755704-782b770c-6a48-4102-8ef1-087fd853418d](https://github.com/Swetha733N/EXNO2DS/assets/122199934/3bcbdfe6-ec7d-4762-9f6b-411b72a78485)
+![328032683-3e4e3dba-4e45-40e0-a9db-711c6d58aca1](https://github.com/Swetha733N/EXNO2DS/assets/122199934/48a262b1-11ef-4dcf-b1a3-7ea91e9bb87e)
+
 
 ```
-dt.describe()
-dt.nunique()
-dt["Survived"].value_counts()
-per=(dt["Survived"].value_counts()/dt.shape[0]*100).round(2)
+df.nunique()
+```
+![328032697-94d5229b-21d2-497d-a85c-863ffd1a787f](https://github.com/Swetha733N/EXNO2DS/assets/122199934/33a48b84-996d-464a-9684-af9790ec8c96)
+
+
+```
+df["Survived"].value_counts()
+```
+![328032710-28af9088-03cd-4840-8055-70642d83323c](https://github.com/Swetha733N/EXNO2DS/assets/122199934/d7840d00-8dc9-420f-8929-8bc56fc9d4d1)
+
+```
+per=(df['Survived'].value_counts()/df.shape[0]*100).round(2)
 per
 ```
-![324756089-45d05238-a279-412b-9d5e-dd2c64b5fdc9](https://github.com/Swetha733N/EXNO2DS/assets/122199934/e700aaf5-6fd1-4f97-945f-8ed68186e5df)
-
-```
-sns.countplot(data=dt,x="Survived")
-dt
-dt.Pclass.unique()
-dt.rename(columns = {"Sex":"Gender"},inplace = True)
-dt
-```
-![327724610-29cdec7c-9c4e-4a9c-866b-15d1d7817a0a](https://github.com/Swetha733N/EXNO2DS/assets/122199934/17d9e2f8-9714-4ac6-8bef-5941d824b59e)
-![327724626-5223d5af-86bc-42b8-be53-4642074a4df2](https://github.com/Swetha733N/EXNO2DS/assets/122199934/8c591c4c-7518-4c89-970c-8f0e9dea59ff)
-![327724636-dd16d9ed-cda3-45d7-a17c-438b5f703e04](https://github.com/Swetha733N/EXNO2DS/assets/122199934/3269a762-dc6a-49f9-b1eb-a51904a950a2)
+![328032724-a0a3f07d-8110-46b3-ad3f-3a4a54ea4e22](https://github.com/Swetha733N/EXNO2DS/assets/122199934/0ce7632e-ce69-434c-bdcb-528fd101293c)
 
 
 ```
-sns.catplot(x="Gender",col="Survived",kind="count",data=dt,height=5,aspect=.7)
+sns.countplot(data=df,x="Survived")
 ```
-![327725510-e355a7e6-28db-4417-92c9-60ca3a868925](https://github.com/Swetha733N/EXNO2DS/assets/122199934/07501816-24d3-425b-997a-8a668dbd70b9)
-
-```
-sns.scatterplot(x=dt["Age"],y=dt["Fare"])
-```
-![327725524-3c7ce365-3736-4066-9a72-4c6bb907dbeb](https://github.com/Swetha733N/EXNO2DS/assets/122199934/c7d4d9e9-afc3-4f01-abae-d8b6ab3a449b)
+![328032737-e2a87a26-8915-4ef3-8c1d-8b5d89a34560](https://github.com/Swetha733N/EXNO2DS/assets/122199934/2c2374ee-90d5-407b-aaa9-eed0763ec347)
 
 
 ```
-sns.jointplot(x="Age",y="Fare",data=dt)
+fig, ax1 = plt.subplots(figsize=(5,5))
+graph=sns.countplot(ax=ax1,x= 'Survived', data=df)
+graph.set_xticklabels (graph.get_xticklabels (), rotation=90)
+for p in graph.patches:
+  height = p.get_height()
+  graph.text(p.get_x()+p.get_width()/2., height + 0.1, height,ha="center")
 ```
-![327725540-9e8f2261-8290-44be-9e6b-ec116561326b](https://github.com/Swetha733N/EXNO2DS/assets/122199934/47dfe0c7-46f8-4752-99d7-c0e8e3669396)
+![328032753-bb472590-a60b-4c21-a3b6-0ce1e5f3ad5c](https://github.com/Swetha733N/EXNO2DS/assets/122199934/a6f69169-7233-438f-b5ef-acba9042f314)
+
+
+```
+df.Pclass.unique()
+```
+![328032771-e17da48a-01de-4931-a084-6f5c5e46774a](https://github.com/Swetha733N/EXNO2DS/assets/122199934/8bdeee55-6246-4857-ae04-66a9abd22a23)
+
+
+```
+df.rename(columns = {'Sex':"Gender"},inplace=True)
+df
+```
+
+```
+sns.catplot(x="Gender",col="Survived",kind="count",data=df,height=5,aspect=.7)
+```
+![328032784-8aeef7e3-f7e7-40c6-bc93-bbf55d87de33](https://github.com/Swetha733N/EXNO2DS/assets/122199934/912dd846-a8ab-4ded-8237-bbb05cac7ec2)
+
+
+```
+sns.catplot(x="Survived",hue="Gender",data=df,kind="count")
+```
+![328032802-aaabd4a3-fbac-45ff-a06c-f64429f85c05](https://github.com/Swetha733N/EXNO2DS/assets/122199934/809288d2-5f81-4e58-8fe5-b845e05a2498)
+
 
 ```
 fig, ax1 = plt.subplots(figsize=(8,5))
-pt=sns.boxplot(ax=ax1,x="Pclass",y='Age',hue='Gender',data=dt)
+graph=sns.countplot(ax=ax1,data=df,x="Survived", hue="Pclass", palette="rainbow")
+graph.set_xticklabels (graph.get_xticklabels())
+for p in graph.patches:
+  height = p.get_height()
+  graph.text(p.get_x()+p.get_width()/2, height+ 20.8, height,ha="left")
 ```
-![327725557-c1fb126f-b73a-49d6-9e5f-8cc2ad6f3f5f](https://github.com/Swetha733N/EXNO2DS/assets/122199934/e92bf118-113b-4dd1-ab6b-f5c8e46371c3)
+![328032811-df255f97-6f55-4058-b682-c78badb02382](https://github.com/Swetha733N/EXNO2DS/assets/122199934/81613ff7-35f2-419e-a9d6-07c00a1b6899)
 
 
 ```
-sns.catplot(data=dt,col="Survived",x="Gender",hue="Pclass",kind="count")
+df.boxplot(column="Age",by="Survived")
 ```
-![327725570-eb6d5f15-c3b3-4c88-a4ef-abfe07b009e4](https://github.com/Swetha733N/EXNO2DS/assets/122199934/463230db-ff14-49df-9a07-47e6b411441a)
+![328032824-30150408-f147-4bbb-bc8f-27a83892036f](https://github.com/Swetha733N/EXNO2DS/assets/122199934/52404bfd-8572-4e15-bf5e-6b1f6c955097)
+
+```
+sns.scatterplot(x=df["Age"],y=df["Fare"])
+```
+![328032854-0b80db12-3099-4383-823d-8d7b5ec5b86d](https://github.com/Swetha733N/EXNO2DS/assets/122199934/32b46ef9-3268-46e9-9e7f-b66a59b8b28f)
 
 
 ```
-corr=dt.corr()
+sns.jointplot(x="Age",y="Fare",data=df)
+```
+![328032867-07541157-1db3-44a8-828d-454e52439238](https://github.com/Swetha733N/EXNO2DS/assets/122199934/1786cfc2-7f4c-4bfd-9cd9-e5738f703a16)
+
+
+```
+fig,ax1=plt.subplots(figsize=(8,5))
+pt=sns.boxplot(ax=ax1,x='Pclass',y='Age',hue="Gender",data=df)
+```
+![328032882-306e6aec-811f-4e27-b8ec-3cd000da0bac](https://github.com/Swetha733N/EXNO2DS/assets/122199934/78d46bbd-0dfe-4d23-a290-fec284db7908)
+
+
+```
+sns.catplot(data=df,col="Survived",x="Gender",hue="Pclass",kind="count")
+```
+![328032892-a16384e3-ffbe-4201-8a68-dd9a4cc77e4b](https://github.com/Swetha733N/EXNO2DS/assets/122199934/b39bb410-ed36-4edc-a11c-1757af2c6b82)
+
+
+```
+g= sns.catplot(data=df,col="Survived",x="Gender",hue="Pclass", kind = "count", legend=True)
+g.fig.set_size_inches(8,5)
+g.fig.subplots_adjust(top=0.81,right=0.86)
+ax =g.facet_axis(0,0)
+for p in ax.patches:
+ax.text(p.get_x()-0.01,p.get_height()*1.02,'{0:.1f}'.format(p.get_height()),color='red',rotation='horizontal',size='small')
+```
+
+
+```
+corr=df.corr()
 sns.heatmap(corr,annot=True)
 ```
-![327725586-2ebef9a2-7e58-4e77-81ac-2d65d3eb03af](https://github.com/Swetha733N/EXNO2DS/assets/122199934/03b4dfd7-d71e-42ff-bad8-e81be49b5f22)
-
 
 ```
-sns.pairplot(dt)
+sns.pairplot(df)
 ```
 
-![327725614-32cac6cc-7397-4215-8575-484e3643b9fb](https://github.com/Swetha733N/EXNO2DS/assets/122199934/30212f68-4eb3-4ff2-9c97-23c4f0e2245f)
+
+
 
 # RESULT
-      Thus, Exploratory Data Analysis for the given dataset is done successfully.
+Thus, the outputs verifies that the data set has been applied the EDA process and methods.
