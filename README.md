@@ -154,17 +154,21 @@ ax =g.facet_axis(0,0)
 for p in ax.patches:
 ax.text(p.get_x()-0.01,p.get_height()*1.02,'{0:.1f}'.format(p.get_height()),color='red',rotation='horizontal',size='small')
 ```
+![328032902-9b8372e2-e6d8-43e6-9ed1-9c8770e02cbd](https://github.com/Swetha733N/EXNO2DS/assets/122199934/246be342-3cb1-4b9d-8574-231ae4db3d24)
 
 
 ```
 corr=df.corr()
 sns.heatmap(corr,annot=True)
 ```
+![328032915-5ed76665-d728-42ff-8ea4-4f5636b0cb02](https://github.com/Swetha733N/EXNO2DS/assets/122199934/183444c1-0b53-4402-b41c-de1be309c3de)
+
 
 ```
 sns.pairplot(df)
 ```
 
+![328032926-31bbc5fd-c168-430b-aba0-f8b028d21c45](https://github.com/Swetha733N/EXNO2DS/assets/122199934/40f18a8b-f9de-4e72-8c4b-126dfe8fd4b1)
 
 
 
